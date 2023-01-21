@@ -28,11 +28,13 @@ let currentRound;
 
 function preload() {
   let alabama = new State(loadImage('images/alabama.jpg'), "Alabama", 32.366805, -86.299969);
-let alaska = new State(loadImage('images/alaska.jpg'), "Alaska", 58.301944, -134.419722);
-let arizona = new State(loadImage('images/arizona.jpg'), "Arizona", 33.448377, -112.074037);
-let arkansas = new State(loadImage('images/arkansas.jpg'), "Arkansas", 34.746481, -92.289595);
+  let alaska = new State(loadImage('images/alaska.jpg'), "Alaska", 58.301944, -134.419722);
+  let arizona = new State(loadImage('images/arizona.jpg'), "Arizona", 33.448377, -112.074037);
+  let arkansas = new State(loadImage('images/arkansas.jpg'), "Arkansas", 34.746481, -92.289595);
+  let california = new State(loadImage('images/california.jpg'), "California", 38.581572, -121.494400);
+  let colorado = new State(loadImage('images/colorado.jpg'), "Colorado", 39.739236, 	-104.990251)
 
-let allStates = [alabama, alaska, arizona, arkansas]
+let allStates = [alabama, alaska, arizona, arkansas, california, colorado]
 
   game = new Game(allStates);
 }
@@ -44,7 +46,10 @@ function setup() {
 
   frameRate(1)
 
- newRound() 
+  newRound() 
+
+  
+  
   
 
 }
@@ -56,20 +61,55 @@ function newRound(){
 }
 
 function draw(){
-  print(currentRound.correctState.name)
-  image(currentRound.correctState.flag, 0, 0)
+  //title
+  fill(0, 0, 0,);
+  textAlign(CENTER);
+  textSize(20);
+  text("US STATE FLAGGLE", 220, 20);
+  
+  //outline
+  strokeWeight(4);
+  stroke(51);
+  noFill();
+  rect(44, 44, 352, 235);
+  
+  //flag
+  print(currentRound.correctState.name);
+  image(currentRound.correctState.flag, 45, 45, 350, 233);
+
+  // guess boxes 
+  strokeWeight(2);
   fill(200,200,200)
-  //align(CENTER);
   rect(45, 300, 350, 30);
   rect(45, 350, 350, 30);
   rect(45, 400, 350, 30);
   rect(45, 450, 350, 30);
   rect(45, 500, 350, 30);
   
+  //input box
+  let inp = createInput('');
+  inp.position(50, 550);
+  inp.size(355, 30);
+  button = createButton('submit');
+  button.position(370, 550);
+  button.size(55, 30)
+  button.mousePressed(InputEvent);
+
+
+
+  
+  // input = createInput();
+  // input.position(45, 550, 350, 30);
+
+  
   //rect(object.style.textAlign = "center");
   
-   // TODO: draw guesses
+
   // input box
   // submit button
+}
+
+function InputEvent(){
+    
 }
 
