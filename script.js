@@ -25,6 +25,7 @@ class Game {
 
 let game;
 let currentRound;
+let allStates
 
 function preload() {
   let alabama = new State(loadImage('images/alabama.jpg'), "Alabama", 32.366805, -86.299969);
@@ -34,7 +35,7 @@ function preload() {
   let california = new State(loadImage('images/california.jpg'), "California", 38.581572, -121.494400);
   let colorado = new State(loadImage('images/colorado.jpg'), "Colorado", 39.739236, -104.990251)
 
-  let allStates = [alabama, alaska, arizona, arkansas, california, colorado]
+  allStates = [alabama, alaska, arizona, arkansas, california, colorado]
 
   game = new Game(allStates);
 }
@@ -60,7 +61,8 @@ function newRound() {
 
 function draw() {
   //title
-  strokeWeight(3);
+  strokeWeight(2);
+  stroke(1);
   fill(0, 0, 0,);
   textAlign(CENTER);
   textSize(20);
@@ -94,47 +96,48 @@ function createControls(){
   let inp = createInput('');
   inp.position(50, 550);
   inp.size(355, 30);
+  inp.input(myInputEvent)
 
   //button
   button = createButton('submit');
   button.position(370, 550);
   button.size(55, 30)
-  button.mousePressed(InputEvent);
+  button.mousePressed(myselectEvent);
 
   
   
 }
 
+function myInputEvent(){
+  let guess = this.value();
+  generateSelection(guess);
+  
+}
+
+let sel ;
 function generateSelection(filter){
   if(sel) {sel.remove()}
   sel = createSelect()
-  sel.postion(50, 540);
+  sel.position(45, 490);
+  sel.size(355, 30);
   allStates.forEach(state => {
     if(state.name.startsWith(filter)){
-      sel.option(state.name)
-      sel.changed(myselectEvent)
+      sel.option(state.name);
+      sel.changed(myselectEvent);
     }
   })
 }
 
 function myselectEvent(){
-  let statename = sel.value()
-  if(sel.value = correctState.name){
+  let statename = this.value();
+  if(statename == currentRound.correctState.name){
+    fill(255,255,255);
+    textAlign(LEFT);
+    textSize(10);    
+    text(currentRound.state, 50, 300);
     
   }
-    
-
-
-
-
-function InputEvent() {
- if (inp = correctState.name) {
-    
-   
-    
-
-
-  }
+  
 }
     
     
@@ -158,4 +161,3 @@ function InputEvent() {
 //                 255
 //             )
 //         );
-} 
