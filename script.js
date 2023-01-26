@@ -56,6 +56,10 @@ function setup() {
 function newRound() {
   let state = random(game.listofStates)
   currentRound = new Round(state)
+  // reset program status
+  const CORRECT_STATE = 1;
+  const GUESS_STATE = 0;
+  let gameState = GUESS_STATE;
 
 }
 
@@ -75,24 +79,25 @@ function draw() {
   rect(44, 44, 352, 235);
 
   //flag
-  print(currentRound.correctState.name);
+  //print(currentRound.correctState.name);
   image(currentRound.correctState.flag, 45, 45, 350, 233);
 
   // guess boxes 
   strokeWeight(2);
   fill(200, 200, 200)
-  rect(45, 300, 350, 30);
-  rect(45, 350, 350, 30);
-  rect(45, 400, 350, 30);
-  rect(45, 450, 350, 30);
-  rect(45, 500, 350, 30);
+  currentRound.guesses.forEach((guess, i) => {
+    x = 45
+    y = 300 + i * 50
+    rect(x, y, 350, 30)
+    text(guess, x, y);
+  })
 
 }
 
 
 
-function createControls(){
-   //input box
+function createControls() {
+  //input box
   let inp = createInput('');
   inp.position(50, 550);
   inp.size(355, 30);
@@ -104,43 +109,53 @@ function createControls(){
   button.size(55, 30)
   button.mousePressed(myselectEvent);
 
-  
-  
+
+
 }
 
-function myInputEvent(){
+function myInputEvent() {
   let guess = this.value();
   generateSelection(guess);
-  
+
 }
 
-let sel ;
-function generateSelection(filter){
-  if(sel) {sel.remove()}
+let sel;
+function generateSelection(filter) {
+  if (sel) { sel.remove() }
   sel = createSelect()
-  sel.position(45, 490);
+  sel.position(45, 500);
   sel.size(355, 30);
   allStates.forEach(state => {
-    if(state.name.startsWith(filter)){
+    if (state.name.startsWith(filter)) {
       sel.option(state.name);
       sel.changed(myselectEvent);
     }
   })
 }
 
-function myselectEvent(){
+function myselectEvent() {
   let statename = this.value();
-  if(statename == currentRound.correctState.name){
-    fill(255,255,255);
-    textAlign(LEFT);
-    textSize(10);    
-    text(currentRound.state, 50, 300);
-    
+  print("selected state", statename, currentRound.correctState.name);
+  if (currentRound.guesses.includes(statename)){
+    //pop up message
+    //clear input box
   }
-  
+
+  else(
+  if (statename != currentRound.correctState.name) {
+    currentRound.guesses.push(statename);
+  }
+  else {
+    //set status to correct
+    //pop up message
+  }
 }
-    
-    
+
+function mousePressed(){
+  // if program status == correct, then make new round
+}
+
+
 
 
 //  p5.prototype.popup = (
