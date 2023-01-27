@@ -53,13 +53,16 @@ function setup() {
 
 }
 
+  const CORRECT_STATE = 1;
+  const GUESS_STATE = 0;
+  let gameState = GUESS_STATE;
+
 function newRound() {
   let state = random(game.listofStates)
   currentRound = new Round(state)
   // reset program status
-  const CORRECT_STATE = 1;
-  const GUESS_STATE = 0;
-  let gameState = GUESS_STATE;
+  gameState = GUESS_STATE;
+  
 
 }
 
@@ -91,6 +94,12 @@ function draw() {
     rect(x, y, 350, 30)
     text(guess, x, y);
   })
+
+  rect(45, 300, 350, 30)
+  rect(45, 350, 350, 30)
+  rect(45, 400, 350, 30)
+  rect(45, 450, 350, 30)
+  rect(45, 500, 350, 30)
 
 }
 
@@ -138,22 +147,55 @@ function myselectEvent() {
   print("selected state", statename, currentRound.correctState.name);
   if (currentRound.guesses.includes(statename)){
     //pop up message
+    popUp("you already guessed that state");
+    popU.postion()
     //clear input box
+    inp.value = "clear()"
+    
   }
 
-  else(
+  else {
   if (statename != currentRound.correctState.name) {
     currentRound.guesses.push(statename);
   }
   else {
     //set status to correct
+    gameState = CORRECT_STATE
     //pop up message
+    popUp("you guessed correctly");
+  
   }
+}
+} 
+
+function popUp(message) {
+  textAlign(LEFT);
+  text(message, 50, 300);
+  
+  
 }
 
 function mousePressed(){
   // if program status == correct, then make new round
+  if (gameState == CORRECT_STATE){
+    newRound();
+  }
+  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
