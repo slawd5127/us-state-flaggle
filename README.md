@@ -3,11 +3,10 @@
  #### _States_
   - add the rest of the states
   - add the US territories aswell
-    - ie guam, american samoa, US virgin islands etc.
-  - certain flags have the name of the state on them (ex. california, arkansas, oregan, north caroline) 
-    to add diffculty, i would like the censor theses names
-    ----
+    - ex. guam, american samoa, US virgin islands etc.
     
+  - certain flags have the name of the state on them, ex. california, arkansas, oregan, north caroline, to add diffculty, i would like the censor theses names
+----    
  #### _Pop Up_
   - added rectangles around pop ups
   - add a timer to the pop up
@@ -29,7 +28,7 @@
   
 #### _Search Bar / Input Box_
   - Currently state is only recognized if you type the first letter as a capital
-    -ie you have to type "Alabama" as "alabama" will not be recognized
+    -ex. you have to type "Alabama" as "alabama" will not be recognized
   - make the input box and the search bar connected
     - create the input box as more of a drop down
     - currently you have to click the button to open the selection, i want it so as you start typing it automatically drops down
