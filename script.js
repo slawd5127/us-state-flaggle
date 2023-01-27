@@ -182,39 +182,3 @@ function mousePressed(){
   }
   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  p5.prototype.popup = (
-//     message,
-//     seconds = 1,
-//     x = width / 2,
-//     y = height / 2,
-//     size = Math.max(innerWidth, innerHeight) / 50
-// ) => {
-//     let stop_frame_number = seconds * frameRate();
-//     if (frameCount <= stop_frame_number) {
-//         let opacity_value = floor(
-//             map(
-//                 abs(frameCount - stop_frame_number),
-//                 0,
-//                 stop_frame_number,
-//                 0,
-//                 255
-//             )
-//         );
